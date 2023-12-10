@@ -35,7 +35,6 @@ func (lb *LoadBalancer) GetNextAvailableServer() *models.Server {
 }
 
 func (lb *LoadBalancer) Serve(wr http.ResponseWriter, req *http.Request) {
-	// wr.Write([]byte("Hello World"))
 	target := lb.GetNextAvailableServer()
 	log.Printf("Serving request by %s", target.GetAddress())
 	target.Proxy.ServeHTTP(wr, req)
